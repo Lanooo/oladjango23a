@@ -4,7 +4,9 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return HttpResponse("<h1>Olha, se você não me ama</h1><h2>Caneta azul, azul caneta</h2>")
+    ultimas_questoes = Questao.objects.order_by("-data")[:5]
+    saida = ",".join([q.questao for q in ultimas_questoes])
+    return HttpResponse(saida)
 
 def caneta(request):
     return HttpResponse("<h1>Olha, se você não me ama</h1><h2>Caneta azul</h2>")
