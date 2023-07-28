@@ -12,3 +12,4 @@ urlpatterns = [
     # ex: /enquete/5/voto/
     path("<int:questao_id>/voto/", views.voto, name="voto"),
 ]
+
