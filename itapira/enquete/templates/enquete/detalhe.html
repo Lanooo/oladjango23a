@@ -1,19 +1,23 @@
 {% extends "enquete/base.html" %}
 {% block content %}
-{% load static %}
-<img src="{% static '/img/logo.jpg' %}" alt="">
 <form action="{% url 'voto' questao.id %}" method="post">
 {% csrf_token %}
-<fieldset>
-    <legend><h1>{{ questao.pergunta }}</h1></legend>
+    <div class="mb-3">
+        <h1 class="text-center">{{ questao.pergunta }}</h1>
+    </div>
     {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>
     {% endif %}
+    <div class="mb-3 lead">
     {% for respostas in questao.resposta_set.all %}
-        <input type="radio" name="resposta" id="resposta{{ forloop.counter }}" value="{{ respostas.id }}" required="required">
-        <label for="resposta{{ forloop.counter }}">{{ respostas.resposta }}</label><br>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="resposta" id="resposta{{ forloop.counter }}" value="{{ respostas.id }}" required="required">
+            <label class="form-check-label" for="resposta{{ forloop.counter }}">{{ respostas.resposta }}</label><br>
+        </div>
     {% endfor %}
-</fieldset>
-<input type="submit" value="Votar">
+    </div>
+    <div class="mb-3">
+        <input class="btn btn-secondary" type="submit" value="Votar">
+    </div>
 </form>
 {% endblock %}

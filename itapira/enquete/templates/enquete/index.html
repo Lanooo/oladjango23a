@@ -1,17 +1,19 @@
 {% extends "enquete/base.html" %}
 {% block content %}
-<h1>Minhas questoes</h1>
+<h1 class="text-center">Minhas questoes</h1>
 {# Isso é um comentario de template do Django #}
 {# {%  %} serve para executar codigos como if e for dentro do template #}
 {# {{  }} serve para inserir o valor da variavel dentro do template #}
 {# Verifica se a variavel ultimas_questoes tem conteudo #}
 {% if object_list %}
-    <ul>
+    <ul class="list-group list-group-flush">
     {# Faz um for sobre as questoes dentro da variavel #}
     {% for questoes in object_list %}
-        <li>
+        <li class="list-group-item lead">
             {# utiliza o name da url para retornar ela #}
-            <a href="{% url 'detalhe' questoes.id %}">
+            <a
+            class="link-dark link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="{% url 'detalhe' questoes.id %}">
                 {# retorna a pergunta da questao {{ questoes.pergunta }} #}
                 {{ questoes.pergunta }}
             </a>
